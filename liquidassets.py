@@ -77,6 +77,6 @@ def solve(text):
     return " ".join(map(lambda word: clean(word), text.split()))
 
 
-n = input()
+n = int(input())
 text = input()
 print(solve(text))
