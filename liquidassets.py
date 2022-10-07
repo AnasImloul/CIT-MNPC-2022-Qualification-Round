@@ -1,14 +1,13 @@
 vowels = "aeiou"
 
 
-def remove_adj(word, n):
+def remove_adj(word):
     """
     n is the length of the word
     time complexity: O(n) -> we iterate over the word once
     space complexity: O(n) -> we use a string to store the result
     """
     # remove all the adjacent characters that are the same
-
     # initialize the result string
     result = ""
     # set a variable to keep track of the last character
@@ -26,7 +25,7 @@ def remove_adj(word, n):
     return result
 
 
-def remove_vowels(word, n):
+def remove_vowels(word):
     """
     n is the length of the word
     time complexity: O(n) -> we iterate over the word once
@@ -38,18 +37,22 @@ def remove_vowels(word, n):
     # initialize the result string
     result = word[0]
     # iterate over the word starting from the second character to the last one minus one
-    for i in range(1, n - 1):
+    for i in range(1, len(word) - 1):
         char = word[i]
         # if the current character is a vowel, skip it
         if char in vowels:
             continue
         # otherwise, append it to the result
         result += char
-    # append the last character to the result and return it
-    return result + word[-1]
+    # if length of the word is greater than 1
+    # append the last character to the result
+    if len(word) > 1:
+        result += word[-1]
+    # return the result
+    return result
 
 
-def clean(word, n):
+def clean(word):
     """
     n is the length of the word
     time complexity: O(n) -> we iterate over the word once
@@ -61,7 +64,7 @@ def clean(word, n):
     # note that the order of the operations is important here
     # example: "lol" -> remove_vowel -> "ll" -> remove_adj -> "l"
     # example: "lol" -> remove_adj -> "lol" -> remove_vowel -> "ll"
-    return remove_vowels(remove_adj(word, n), n)
+    return remove_vowels(remove_adj(word))
 
 
 def solve(text):
